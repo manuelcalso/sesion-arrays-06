@@ -117,3 +117,46 @@ const empleados = [
 
 
   evaluationArea.innerHTML = `<P>La evaluacion de andy es: <b>${evaluacion[2]}</b></P>`
+
+
+
+  const edadesConNombre = [
+    {nombre: "juan", edad: 15},
+    {nombre: "pedro", edad: 19},
+    {nombre: "jose", edad: 22}
+  ]
+  
+  const filtraMenoresEdad = edadesConNombre.filter(persona => {
+    return 18 >= persona.edad
+  })
+  
+  console.log("filtraMenoresEdad", filtraMenoresEdad ) 
+
+
+  for(let i = 0; i < estudiantes.length; i++){
+    let estudiante = estudiantes[i]
+    console.log(estudiante)
+
+
+    let suma = 0
+
+    for(let j = 0; j < estudiante.calificaciones.length; j++){
+        suma += estudiante.calificaciones[j]
+    }  
+
+
+    let promedio = suma / estudiante.calificaciones.length
+    console.log(promedio)
+  
+
+    if(promedio < 70) {
+
+        console.log(`El estudiante ${estudiante.nombre} reprobó con ${promedio}. Triste historia`)
+
+    } else {
+
+        console.log(`El estudiante ${estudiante.nombre} aprobó con ${promedio}. Linda historia`)
+
+    }
+
+}
