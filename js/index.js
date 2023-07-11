@@ -1,11 +1,9 @@
 // ./js/index.js
 // https://codesandbox.io/s/brave-almeida-lxs3m6
 
-const evaluationArea = document.querySelector("#evaluationArea");
-console.log("evaluationArea", evaluationArea)
-
 // VARIABLES
-const mike = "Mike";
+const evaluationArea = document.querySelector("#evaluation-area");
+console.log("evaluationArea", evaluationArea);
 
 const saludar = () => {
   return "Hola!";
@@ -42,121 +40,120 @@ console.log(str2);
 
 // MÉTODOS DE ARREGLO
 
-// REDUCE
-// MÉTODOS DE ARREGLO
-
-
-
-
-// REDUCE
-
-const numeros = [2,3,5,9]
-
-
-
+// 1. REDUCE
+// REALIZA UNA OPERACIÓN DE EVALUACIÓN DE TODOS LOS ELEMENTOS, ENTREGANDO UNO
+const numeros = [2, 3, 5, 9, 150];
 
 const sumarNumeros = numeros.reduce((acumulador, valorActual) => {
+  console.log("acumulador", acumulador);
+  console.log("valor actual", valorActual);
+  console.log("resultado acumulador + valor actual", acumulador + valorActual);
+  console.log("-------");
 
+  return acumulador + valorActual;
+}, 10);
 
+console.log(sumarNumeros);
 
+// EJERCICIO
+// REDUCE MULTIPLICACIÓN
+const ventas = [100, 300, 500, 8000, 1560];
+const totalVentas = ventas.reduce((acumulador, valorActual) => {
+  return acumulador + valorActual;
+}, 0);
+console.log("totalVentas", totalVentas);
 
-    console.log("acumulador", acumulador)
+// 2. MAP
+// RECORRE TODOS LOS ELEMENTOS DEL ARREGLO Y LOS CAMBIA, GENERAN UN NUEVO ARREGLO
+// PARADIGMA DE PROGRAMACIÓN FUNCIONAL
+// SIEMPRE DEBES GENERAR UNA NUEVA VARIABLE SI ESTÁS MUTANDO ALGO
 
-    console.log("valor actual", valorActual)
+const paises = [
+  "México",
+  "Colombia",
+  "Perú",
+  "Argentina",
+  "Brasil",
+  "Chile",
+  "Estados Unidos"
+];
 
-    console.log("resultado acumulador + valor actual", acumulador + valorActual)
+const formatoPaises = paises.map((pais) => {
+  return `El país es: ${pais}`;
+});
 
-    console.log("-------")
+console.log("formatoPaises", formatoPaises);
 
+// EJERCICIO MAP
+// GENEREN UN NUEVO ARREGLO DE NÚMEROS
+// MULTIPLIQUEN POR 3 CADA ELEMENTO DEL ARREGLO
+// INPUT: [1,2,3]
+// OUTPUT: [3,6,9]
 
-
-
-    return acumulador + valorActual
-
-}, 10)
-
-
-
-
-console.log(sumarNumeros)
-
-
-const ventas = [100, 300, 500, 8000, 1560]
-const totalVentas = ventas.reduce((acumulador, valorActual)=>{
-  return acumulador + valorActual
-}, 0)
-console.log(totalVentas)
-
+// EJERCICIO DE PRACTICIDAD EMPRESARIAL
+// DETERMINAR SI LOS SALARIOS SE ENCUENTRAN EN UN RANGO DE SALARIO ALTO
 
 const empleados = [
-    {
-      nombre: "mike", salario: 3000
-    },
-    
-    {
-      nombre: "ramiro", salario: 5000
-    },
-    
-    {
-      nombre: "andy", salario: 8000
-    }
-  ]
-  
-  
-  
-  const evaluacion = empleados.map(({nombre, salario}) => {
-    let resultado = `El salario de ${nombre} es normal`
-    
-    if(salario > 7000){
-      return `El salario de ${salario} es considerado alto `
-    }
-    return resultado
-    
-  })
-  console.log("evaluacion", evaluacion)
+  {
+    nombre: "Mike",
+    salario: 3000
+  },
+  {
+    nombre: "Ramiro",
+    salario: 5000
+  },
+  {
+    nombre: "Andrea",
+    salario: 8000
+  }
+];
 
+const evaluacion = empleados.map((empleado) => {
+  let resultado = `El salario de ${empleado.nombre} es un salario promedio, dentro del rango interno de la empresa`;
 
-  evaluationArea.innerHTML = `<P>La evaluacion de andy es: <b>${evaluacion[2]}</b></P>`
+  if (empleado.salario > 7000) {
+    resultado = `El salario de ${empleado.nombre} es considerado un salario alto, dentro del rango interno de la empresa.`;
+  }
 
+  return resultado;
+});
 
+console.log("evaluación", evaluacion);
 
-  const edadesConNombre = [
-    {nombre: "juan", edad: 15},
-    {nombre: "pedro", edad: 19},
-    {nombre: "jose", edad: 22}
-  ]
-  
-  const filtraMenoresEdad = edadesConNombre.filter(persona => {
-    return 18 >= persona.edad
-  })
-  
-  console.log("filtraMenoresEdad", filtraMenoresEdad ) 
+evaluationArea.innerHTML = `<p><b>${evaluacion[2]}</b></p>`;
 
+// 3. FIND
+// ACCEDER A CADA ELEMENTO DEL ARREGLO, Y, AL COINCIDIR EL VALOR DE BÚSQUEDA CON UNO DE LOS ELEMENTOS, RETORNA EL VALOR.
+// DEVUELVE LA PRIMERA COINCIDENCIA
 
-  for(let i = 0; i < estudiantes.length; i++){
-    let estudiante = estudiantes[i]
-    console.log(estudiante)
+const edades = [13, 20, 15, 18, 22, 13];
 
+const encuentraAlPrimerMenorDeEdad = edades.find((edad) => {
+  return 18 >= edad;
+});
 
-    let suma = 0
+console.log("evaluarMayoriaDeEdad", encuentraAlPrimerMenorDeEdad);
 
-    for(let j = 0; j < estudiante.calificaciones.length; j++){
-        suma += estudiante.calificaciones[j]
-    }  
+// 4. FILTER
+// ITERA SOBRE CADA ELEMENTO DEL ARREGLO Y FILTRA DE ACUERDO A LA CONDICIÓN LOS ELEMENTOS, CREANDO UN NUEVO ARREGLO
 
+const edadesConNombre = [
+  { nombre: "Persona 1", edad: 13 },
+  { nombre: "Persona 2", edad: 25 },
+  { nombre: "Persona 3", edad: 18 }
+];
 
-    let promedio = suma / estudiante.calificaciones.length
-    console.log(promedio)
-  
+const encuentraTodosLosMenoresDeEdad = edadesConNombre.filter((persona) => {
+  return 18 >= persona.edad;
+});
 
-    if(promedio < 70) {
+console.log("encuentraTodosLosMenoresDeEdad", encuentraTodosLosMenoresDeEdad);
 
-        console.log(`El estudiante ${estudiante.nombre} reprobó con ${promedio}. Triste historia`)
+// NOT RECOMMENDED
+// 5. FOR
 
-    } else {
+// 6. FOREACH
 
-        console.log(`El estudiante ${estudiante.nombre} aprobó con ${promedio}. Linda historia`)
-
-    }
-
-}
+// YEAH, THIS ONE IS RECOMMENDED
+// BONUS
+// 7. INCLUDES
